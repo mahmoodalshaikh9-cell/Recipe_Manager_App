@@ -1,0 +1,10 @@
+Recipe title,Ingredients,Preparation time (minutes),Instructions,Difficulty level,type_meal,Rating,Meal time
+Spaghetti Bolognese,"spaghetti,beef,tomato,onion,garlic",30,Cook pasta and sauce.,Medium,Dinner,1 star,
+Pancakes,"flour,milk,egg,sugar",15,Mix and fry.,Easy,Breakfast,,
+Chicken Salad,"chicken,lettuce,tomato,cucumber",20,Mix ingredients.,Easy,Lunch,1 star,
+Chocolate Cake,"flour,cocoa,sugar,egg,butter",60,Bake batter.,Hard,Dessert,,
+Grilled Cheese,"bread,cheese,butter",10,Grill sandwich.,Easy,Lunch,,
+Omelette,"egg,cheese,onion",8,Cook eggs.,Easy,Breakfast,,
+Beef Stir Fry,"beef,broccoli,soy sauce",25,Stir fry.,Medium,Dinner,,
+Fruit Parfait,"yogurt,berries,granola",5,Layer ingredients.,Easy,Dessert,3 star,
+saloona,"['sea water', ' tomato paste', ' meat']",0,,Easy,,not rated,Dinner
