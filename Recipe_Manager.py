@@ -69,19 +69,19 @@ with tab3:
     st.image("images.jpg")
     left, center, right = st.columns([1, 5, 1])
 
-   
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
+    with center:
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
             if st.button("Breakfast", type="primary" ):
                 filtered_df = added[added["Meal time"] == "Breakfast"]
                 st.dataframe(filtered_df) 
-    with col2:
+        with col2:
             if st.button("Lunch", type="primary"):
                 st.dataframe(added[added["Meal time"] == "Lunch"])
-    with col3:
+        with col3:
             if st.button("Dinner", type="primary"):
                 st.dataframe(added[added["Meal time"] == "Dinner"])
-    with col4:
+        with col4:
             if st.button("Dessert", type="primary"):
                 st.dataframe(added[added["Meal time"] == "Dessert"])
 
