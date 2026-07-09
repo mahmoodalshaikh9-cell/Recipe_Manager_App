@@ -11,7 +11,7 @@ import helper
 added = pd.read_csv("added.csv")
 
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["Add Recipe", "look it up", "view options","go on ride","Rate a recipe"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["Add recipe", "look it up", "View options","Go on ride","Rate a recipe"])
 
 
 
@@ -24,7 +24,13 @@ with tab1:
         st.header("Add Recipe")
         st.image("images.jpg")
         recipe_name = st.text_input("Recipe title")
-        ingredients = st.text_input("Ingredients", "").split(",")   
+        ingredients_input = st.text_input("Ingredients", "")
+
+        ingredients = [
+            item.strip()
+            for item in ingredients_input.split(",")
+            if item.strip()
+        ]
         Pre_time_mins = st.number_input("Preparation time (minutes)", min_value= int(0))
         inst = st.text_area("Instructions", "")
         
@@ -34,12 +40,42 @@ with tab1:
         
         subbtn = st.form_submit_button(label="Submit")
         if subbtn:
-            addedcols = ["Recipe title", "Ingredients", "Preparation time (minutes)", "Instructions", "Difficulty level",  "Meal time", "Rating"]
-            row = pd.DataFrame(columns=addedcols, data=[(recipe_name, ingredients, Pre_time_mins, inst , Difficulty_level,  Mealtime , "not rated" )])
+            if not recipe_name.strip():
+                st.error("Please enter a recipe title.")
+            elif not ingredients:
+                st.error("Please enter at least one ingredient.")
+            elif Pre_time_mins <= 0:
+                st.error("Preparation time must be greater than 0.")
+            elif not inst.strip():
+                st.error("Please enter the instructions.")
+            else:
+                addedcols = [
+                    "Recipe title",
+                    "Ingredients",
+                    "Preparation time (minutes)",
+                    "Instructions",
+                    "Difficulty level",
+                    "Meal time",
+                    "Rating"
+                ]
 
-            added = pd.concat([added, row])
-            added.to_csv("added.csv", index=False)
-            st.rerun()
+                row = pd.DataFrame(
+                    columns=addedcols,
+                    data=[(
+                        recipe_name,
+                        ingredients,
+                        Pre_time_mins,
+                        inst,
+                        Difficulty_level,
+                        Mealtime,
+                        "not rated"
+                    )]
+                )
+
+                added = pd.concat([added, row], ignore_index=True)
+                added.to_csv("added.csv", index=False)
+                st.success("Recipe added successfully!")
+                st.rerun()
 
 with tab2:
     st.header("search for a recipe")
